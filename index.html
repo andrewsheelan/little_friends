@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumi</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="character" data-who="cheerful" data-pose="idle" data-mouth="0" aria-label="Lumi">
+        <button id="nudge" type="button" hidden></button>
+        <div id="pet" aria-hidden="true" hidden></div>
+      </section>
+      <section id="panel">
+        <div id="download" hidden>
+          <span id="download-text"></span>
+          <button id="retry" type="button" hidden>Retry</button>
+        </div>
+        <div class="tools" role="toolbar" aria-label="Settings">
+          <label class="tool" id="who-tool" data-who="cheerful" title="Who's here">
+            <svg class="glyph glyph-cheerful" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6.5 19c1.2-3 3.2-4.2 5.5-4.2S16.8 16 18 19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <svg class="glyph glyph-calm" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="7" width="11" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="10" cy="11.5" r="1"/><circle cx="14" cy="11.5" r="1"/><path d="M10 15h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg class="glyph glyph-study" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="12" r="3.1" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="15.5" cy="12" r="3.1" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M11.6 12h.8" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+            <svg class="glyph glyph-dad" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 14.5c2.2-1.6 4.2-2.4 6.5-2.4s4.3.8 6.5 2.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 12.2v2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <select id="personality" aria-label="Personality">
+              <option value="cheerful">Lumi, cheerful friend</option>
+              <option value="calm">Pip, helper robot</option>
+              <option value="study">Milo, study buddy</option>
+              <option value="dad">Hank, careful dad</option>
+            </select>
+          </label>
+          <label class="tool" id="lang-tool" data-lang="english" title="Language">
+            <span class="glyph-text glyph-en" aria-hidden="true">A</span>
+            <span class="glyph-text glyph-ta" aria-hidden="true">த</span>
+            <select id="language" aria-label="Language">
+              <option value="english">English</option>
+              <option value="tamil">தமிழ்</option>
+            </select>
+          </label>
+          <label class="tool" title="Model">
+            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 19 8.4v7.2L12 19.5 5 15.6V8.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 4.5v15M5 8.4l7 3.9 7-3.9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <select id="model" aria-label="Model"></select>
+          </label>
+          <div class="tool is-read" title="Voice">
+            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16 9.5a3.2 3.2 0 0 1 0 5M18.4 7.4a6 6 0 0 1 0 9.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <output id="voice">Sky</output>
+          </div>
+          <button type="button" class="tool" id="backup" title="Backup folder" aria-label="Backup folder">
+            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 8.5h5l1.6 1.8H19.5v8.2H4.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 13.5h8M12 13.5v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <output id="backup-folder" aria-hidden="true">Off</output>
+          </button>
+          <div id="status" role="status"></div>
+        </div>
+        <div id="transcript" aria-live="polite"></div>
+        <div id="suggestions" aria-label="Suggestions"></div>
+        <form id="composer" autocomplete="off">
+          <input id="text" placeholder="Type a message" aria-label="Message" />
+          <button id="mic" type="button">Listen</button>
+        </form>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+[package]
+name = "lumi-app"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "lumi_app"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7.4", features = [] }
+
+[dependencies]
+tauri = { version = "2.12.5", features = [] }
+lumi-core = { path = "../crates/lumi-core" }
+sherpa-onnx = "1.13.8"
+cpal = "0.18"
+rodio = "0.23"
+rfd = "0.15"

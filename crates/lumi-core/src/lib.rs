@@ -1,0 +1,16 @@
+pub mod audio;
+pub mod backup;
+pub mod phonon;
+pub mod conversation;
+pub mod model_choice;
+pub mod ollama;
+pub mod packs;
+pub mod pets;
+pub mod prompts;
+pub mod settings;
+pub mod suggestions;
+pub mod speech_text;
+pub mod tamil_listen;
+pub mod tamil_voice;
+pub mod turn;
+pub mod app;
