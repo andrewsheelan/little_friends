@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-macos
+  cancel-in-progress: true
+
+jobs:
+  publish-macos:
+    permissions:
+      contents: write
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+
+      - name: Cache Rust
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: . -> target
+
+      - name: Install npm packages
+        run: npm ci
+
+      - name: Test
+        run: |
+          npm test
+          cargo test -p lumi-core --lib
+
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: latest
+          releaseName: Lumi
+          releaseBody: |
+            Apple Silicon build from ${{ github.sha }}.
+
+            Not notarized: right-click Lumi and choose Open the first time.
+            You still need Ollama on this Mac. Speech models download on first launch.
+          releaseDraft: false
+          prerelease: false
+          generateReleaseNotes: true
+          uploadUpdaterJson: false
+          args: --target aarch64-apple-darwin

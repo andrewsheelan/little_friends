@@ -30,6 +30,8 @@ From the repo root:
 
 That script checks this Mac, installs Node, Rust, Ollama, and uv with Homebrew when one of them is missing, runs `npm install`, starts Ollama if it is not already answering, and pulls `gemma4:latest` when no chat model is installed. It also sets up the human voice (see below). It then opens the window. Running it again is safe and quick.
 
+Each push to `main` also builds an Apple Silicon `.dmg` and publishes it on [Releases](https://github.com/andrewsheelan/little_friends/releases). It is not notarized, so the first time you open it, right-click Lumi and choose Open. You still need Ollama on the Mac. If GitHub Actions cannot create the release, set the repo's Actions workflow permissions to Read and write.
+
 You can still start the window yourself with `npm install` and `npm run tauri dev` after those tools are in place. If Ollama is not already running, Lumi also starts `ollama serve` and waits up to 20 seconds. The text box stays disabled, with the line you typed still in it, until a chat model is available.
 
 The first launch downloads the missing speech packs into `~/Library/Application Support/com.lumi.companion/models`:
